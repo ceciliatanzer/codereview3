@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Store location</title>
+    <link href="stylecar.css" rel="stylesheet">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCF5TVpHOKOq778R7mxX3xqNWB-RKwc52o&callback=myMap"></script>
+</head>
+
+<body>
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/de/thumb/a/ab/Vienna-Insurance-Group-Logo.svg/2000px-Vienna-Insurance-Group-Logo.svg.png" alt="logo">
+        <h1>“Driven to be the best”</h1>
+    </header>
+    <nav>
+    <!--linked all the 3 pages to one another-->
+        <a href="carhomepage.html" title="map">Home</a>
+        <a href="form.html" title="form">Get you're personalized offer</a>
+    </nav>
+    <div id="map" style="width:600px;height:600px;"></div>
+    <script>
+    // Define your locations: HTML content for the info window, latitude, longitude,boolean
+    var locations = [
+        ['<h4>Vienna</h4>', 48.210033, 16.363449, true],
+        ['<h4>Bucharest</h4>', 44.439663, 26.096306, false],
+        ['<h4>Stockholm</h4>', 59.334591, 18.063240, false],
+        ['<h4>Moskow</h4>', 55.752121, 37.617664, true],
+        ['<h4>London</h4>', 51.508530, 51.508530, true]
+    ];
+
+    // Setup different icons and shadows
+    var iconURLPrefix = 'http://maps.google.com/mapfiles/ms/icons/';
+
+    var icons = [
+        iconURLPrefix + 'red-dot.png',
+        iconURLPrefix + 'green-dot.png',
+        iconURLPrefix + 'blue-dot.png',
+        iconURLPrefix + 'orange-dot.png',
+        iconURLPrefix + 'purple-dot.png',
+        iconURLPrefix + 'pink-dot.png',
+        iconURLPrefix + 'yellow-dot.png'
+    ]
+    var iconsLength = icons.length;
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 10,
+        center: new google.maps.LatLng(-37.92, 151.25),
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeControl: false,
+        streetViewControl: false,
+        panControl: false,
+        zoomControlOptions: {
+            position: google.maps.ControlPosition.LEFT_BOTTOM
+        }
+    });
+
+    var infowindow = new google.maps.InfoWindow({
+        maxWidth: 160
+    });
+
+    var markers = new Array();
+
+    var iconCounter = 0;
+
+
+    // Add the markers and infowindows to the map
+    for (var i = 0; i < locations.length; i++) {
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            map: map,
+            icon: icons[iconCounter]
+        });
+
+        markers.push(marker);
+
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                infowindow.setContent(locations[i][0]);
+                infowindow.open(map, marker);
+            }
+        })(marker, i));
+
+        iconCounter++;
+        // We only have a limited number of possible icon colors, so we may have to restart the counter
+        if (iconCounter >= iconsLength) {
+            iconCounter = 0;
+        }
+    }
+
+    function autoCenter() {
+        //  Create a new viewpoint bound
+        var bounds = new google.maps.LatLngBounds();
+        //  Go through each...
+        for (var i = 0; i < markers.length; i++) {
+            bounds.extend(markers[i].position);
+        }
+        //  Fit these bounds to the map
+        map.fitBounds(bounds);
+    }
+    autoCenter();
+    </script>
+    <footer>
+        Copyright &copy; Cecilia Tanzer 2017
+    </footer>
+</body>
+
+</html>

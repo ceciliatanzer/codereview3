@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form</title>
+    <link href="stylecar.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/de/thumb/a/ab/Vienna-Insurance-Group-Logo.svg/2000px-Vienna-Insurance-Group-Logo.svg.png" alt="logo">
+        <h1>“Driven to be the best”</h1>
+    </header>
+    <!--linked all the 3 pages to one another-->
+    <nav>
+        <a href="carhomepage.html" title="map">Home   </a>
+        <a href="Map.html" title="map">   Our locations</a>
+    </nav>
+    <form>
+        Please enter you're name:
+        <br>
+        <input type="text" name="Name">
+        <br> Please enter you're age:
+        <br>
+        <input type="number" name="Age">
+        <br> Please select you're gender:
+        <br>
+        <input type="radio" name="gender" value="male"> Male
+        <br>
+        <input type="radio" name="gender" value="female"> Female
+        <br>
+        <input type="radio" name="gender" value="other"> Other
+        <br>
+        <br> Please select country:
+        <br>
+        <select name="Country">
+            <option value="germany" id="de">Germany</option>
+            <option value="austria" id="au">Austria</option>
+            <option value="switzerland" id="sw">Switzerland</option>
+            <option value="italy" id="it">Italy</option>
+        </select>
+        <br> Please enter you're cars horsepower:
+        <br>
+        <input type="number" name="horsepower" id="hp">
+        <br>
+        <button onclick="calculator()">Calculate price</button>
+        <br>
+        <p id="result"></p>
+    </form>
+    <script>
+    //I don't know why it does't put the result in my p tag from html....
+
+    function calculator() {
+        var horsePower = document.getElementById("hp").value;
+
+
+        if (horsePower >= 70) {
+            var finalPrice = horsePower + horsePower * 20 / 100;
+        } else {
+            var finalPrice = horsePower + horsePower * 10 / 100;
+        }
+        console.log(finalPrice);
+
+
+        document.getElementById("result").innerHTML = "You're offer is: " + finalPrice + "€";
+    }
+    </script>
+    <footer>
+        Copyright &copy; Cecilia Tanzer 2017
+    </footer>
+</body>
+
+</html>

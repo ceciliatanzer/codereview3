@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Car insurance</title>
+    <link href="stylecar.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <img src="https://upload.wikimedia.org/wikipedia/de/thumb/a/ab/Vienna-Insurance-Group-Logo.svg/2000px-Vienna-Insurance-Group-Logo.svg.png" alt="logo">
+        <h1>“Driven to be the best”</h1>
+    </header>
+    <!--linked all the 3 pages to one another-->
+    <nav>
+        <a href="Map.html" title="map">Our locations</a>
+        <a href="form.html" title="form">Get you're personalized offer</a>
+    </nav>
+    <h2>Our team:</h2>
+    <div id="container">
+        <a></a>
+        <a></a>
+        <a></a>
+    </div>
+    <script>
+    var employee = [{
+        "Picture": "01.jpg",
+        "Name": "Andrea Hoffer",
+        "Email": "a.hoffer@vinsurance.at",
+    }, {
+        "Picture": "02.jpg",
+        "Name": "Max Mustermann",
+        "Email": "m.mustremann@vinsurance.at",
+    }, {
+        "Picture": "03.jpg",
+        "Name": "Maria Schwarz",
+        "Email": "m.schwarz@vinsurance.at",
+    }, {
+        "Picture": "04.jpg",
+        "Name": "Fabian Young",
+        "Email": "f.young@vinsurance.at",
+    }, {
+        "Picture": "05.jpg",
+        "Name": "Marko Polo",
+        "Email": "m.polo@vinsurance.at",
+    }, {
+        "Picture": "06.jpg",
+        "Name": "Paulina Peter",
+        "Email": "p.peter@vinsurance.at",
+    }]
+    //I don't know why the images will not load :(
+    for (i = 0; i < employee.length; i++) {
+        document.getElementById("container").innerHTML += '<a>' + employee[i].Picture + '</a>';
+        document.getElementById("container").innerHTML += '<a>' + employee[i].Name + '</a>';
+        document.getElementById("container").innerHTML += '<a>' + employee[i].Email + '</a>';
+    }
+    </script>
+    <footer>
+        Copyright &copy; Cecilia Tanzer 2017
+    </footer>
+</body>
+
+</html>
